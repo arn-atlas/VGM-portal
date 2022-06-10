@@ -3,31 +3,39 @@ from time import sleep
 import keyboard as kb
 import os
 
-with open(os.path.join(os.getcwd(), "list.csv")) as csv_file:
+short_delay = 0.05
+long_delay = 0.2
+
+local_dir = os.getcwd()
+csv_dir = os.path.join(local_dir, "list.csv")
+
+# Counts number of lines in csv file
+with open(csv_dir) as csv_file:
+    print(sum(1 for line in csv_file), "containere")
+
+with open(csv_dir) as csv_file:
     reader = csv.reader(csv_file, delimiter=';')
     kb.wait('insert')
     for row in reader:
         print(row)
         kb.write(row[0])
-        sleep(0.05)
+        sleep(short_delay)
         kb.send('tab')
-        sleep(0.05)
+        sleep(short_delay)
         kb.write(row[1])
-        sleep(0.05)
+        sleep(short_delay)
         kb.send('tab')
-        sleep(0.05)
+        sleep(short_delay)
         kb.write(row[2])
-        if len(row[2].split(',')) < 3:
-            kb.write("0")
         kb.send('tab')
-        sleep(0.2)
+        sleep(long_delay)
         kb.write("Method 2")
-        sleep(0.05)
+        sleep(short_delay)
         kb.send('enter')
-        sleep(0.2)
+        sleep(long_delay)
         kb.send('tab')
-        sleep(0.05)
+        sleep(short_delay)
         kb.send('tab')
-        sleep(0.05)
+        sleep(short_delay)
         kb.send('tab')
-        sleep(0.05)
+        sleep(short_delay)
