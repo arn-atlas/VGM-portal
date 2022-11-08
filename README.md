@@ -2,7 +2,7 @@
 
 ## Installer pyinstaller
 ```
-pip install pyinstaller
+pip3 install pyinstaller
 ```
 
 ## Kør pyinstaller i root mappen af projektet.
