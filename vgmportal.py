@@ -1,41 +1,46 @@
-import csv
+import sys
 from time import sleep
 import keyboard as kb
-import os
+from datetime import datetime
 
-short_delay = 0.05
-long_delay = 0.2
+args = sys.argv
+print(args)
+input()
 
-local_dir = os.getcwd()
-csv_dir = os.path.join(local_dir, "list.csv")
+"""
+SHORT_DELAY = 0.05
+LONG_DELAY = 0.2
 
-# Counts number of lines in csv file
-with open(csv_dir) as csv_file:
-    print(sum(1 for line in csv_file), "containere")
+def paste_data(text, tabs = 1, delay = SHORT_DELAY):
+    print(text)
+    if text:
+        kb.write(str(text))
+        sleep(delay)
+    for _ in range(tabs):
+        kb.send('tab')
+        sleep(delay)
 
-with open(csv_dir) as csv_file:
-    reader = csv.reader(csv_file, delimiter=';')
+def main():
+    args = sys.argv
+    data = [a.split("¢") for a in args[1].split("¥")]
+
+    print(data)
+
     kb.wait('insert')
-    for row in reader:
+    for row in data:
         print(row)
-        kb.write(row[0])
-        sleep(short_delay)
-        kb.send('tab')
-        sleep(short_delay)
-        kb.write(row[1])
-        sleep(short_delay)
-        kb.send('tab')
-        sleep(short_delay)
-        kb.write(row[2])
-        kb.send('tab')
-        sleep(long_delay)
+
+        paste_data(row[0])
+        paste_data(row[1])
+        paste_data(row[2])
+
+        sleep(LONG_DELAY)
         kb.write("Method 2")
-        sleep(short_delay)
+        sleep(SHORT_DELAY)
         kb.send('enter')
-        sleep(long_delay)
-        kb.send('tab')
-        sleep(short_delay)
-        kb.send('tab')
-        sleep(short_delay)
-        kb.send('tab')
-        sleep(short_delay)
+        sleep(SHORT_DELAY)
+        paste_data(None,tabs=3)
+
+if __name__ == '__main__':
+    main()
+"""
